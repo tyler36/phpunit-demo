@@ -1,0 +1,46 @@
+stages:
+  - build
+  - test
+
+variables:
+  # Set the version of PHP
+  PHP_VERSION: 8.2
+
+# re-usable anchor for PHP image
+.php_base_image: &php_base_image
+  image: php:${PHP_VERSION}-cli
+
+cache:
+  paths:
+    - .tmp/
+    - vendor/
+
+'📦 Composer':
+  <<: *php_base_image
+  stage: build
+  script:
+    # Install composer dependencies
+    - test -d vendor || curl -sS https://getcomposer.org/installer | php
+    - test -d vendor || php composer.phar install
+
+'✅ phpunit':
+  <<: *php_base_image
+  stage: test
+  needs:
+    - '📦 Composer'
+  before_script:
+    # Setup coverage driver
+    - pecl install xdebug && docker-php-ext-enable xdebug
+  script:
+    - XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text
+  coverage: '/^\s*Lines:\s*(\d+.\d+\%)/'
+  artifacts:
+    when: always
+    paths:
+      - logs/
+    # Report files are defined in phpunit.xml
+    reports:
+      junit: logs/phpunit-junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: logs/php-coverage/cobertura-coverage.xml
