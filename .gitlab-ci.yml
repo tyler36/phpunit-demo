@@ -19,6 +19,9 @@ cache:
   <<: *php_base_image
   stage: build
   script:
+    # Prep system
+    - test -d vendor || apt-get update -yqq
+    - test -d vendor || apt-get install -yqq curl zip unzip
     # Install composer dependencies
     - test -d vendor || curl -sS https://getcomposer.org/installer | php
     - test -d vendor || php composer.phar install
@@ -29,10 +32,13 @@ cache:
   needs:
     - '📦 Composer'
   before_script:
-    # Setup coverage driver
-    - pecl install xdebug && docker-php-ext-enable xdebug
+    # Setup xdebug coverage driver
+    # - pecl install xdebug && docker-php-ext-enable xdebug
+    # Setup pcov coverage driver
+    - pecl install pcov && docker-php-ext-enable pcov
   script:
-    - XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text
+    # - XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text
+    - vendor/bin/phpunit --coverage-text
   coverage: '/^\s*Lines:\s*(\d+.\d+\%)/'
   artifacts:
     when: always
