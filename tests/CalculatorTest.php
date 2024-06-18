@@ -5,14 +5,19 @@ namespace Tests;
 use App\Calculator;
 use Generator;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class CalculatorTest.
  */
+#[Group('calculator')]
 class CalculatorTest extends TestCase
 {
 
+  /**
+   * @codeCoverageIgnore
+   */
   public static function sumProvider(): Generator
   {
     yield 'zero' => [0, 0, 0];

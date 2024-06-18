@@ -6,6 +6,7 @@
 - [Usage](#usage)
   - [Data providers](#data-providers)
   - [Testing output](#testing-output)
+  - [Metadata](#metadata)
   - [Disable Deprecation warnings](#disable-deprecation-warnings)
   - [Exceptions](#exceptions)
 - [Faking](#faking)
@@ -107,6 +108,36 @@ public function testExpectFooActualFoo(): void
 
     print 'foo';
 }
+```
+
+### Metadata
+
+PHPUnit 10+ embraces PHP attributes, instead of doc-block comments.
+@see <https://docs.phpunit.de/en/11.2/attributes.html>.
+
+- doc-block metadata.
+
+```php
+/**
+ * Class CalculatorTest.
+ *
+ * @coversDefaultClass \App\Calculator
+ * @group math
+ */
+class CalculatorTest extends TestCase
+```
+
+- PHP attributes.
+
+```php
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
+/**
+ * Class CalculatorTest.
+ */
+#[CoversClass(\App\Calculator::class)]
+#[Group('math')]
+class CalculatorTest extends TestCase
 ```
 
 ### Disable Deprecation warnings
@@ -253,7 +284,7 @@ Instead, set the value in a composer script.
       "test": "phpunit",
       "test:coverage": [
           "@putenv XDEBUG_MODE=coverage",
-          "@test"
+          "@test --coverage-text"
       ]
   },
 ```
@@ -286,7 +317,7 @@ pcov.exclude   = "#/(vendor)/#"
 To set via CLI:
 
 ```shell
-php -d pcov.enabled=1 -d pcov.directory=. -dpcov.exclude=\"~vendor~\" vendor/bin/phpunit
+php -d pcov.enabled=1 -d pcov.directory=. -d pcov.exclude=\"~vendor~\" vendor/bin/phpunit --coverage-text
 ```
 
 Or with a composer script:
