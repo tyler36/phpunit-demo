@@ -7,10 +7,11 @@
     },
     "scripts": {
         "test": "phpunit",
-        "test:coverage": [
+        "test:xdebug": [
             "@putenv XDEBUG_MODE=coverage",
-            "@test"
-        ]
+            "@test --coverage-text"
+        ],
+        "test:pcov": "php -d pcov.enabled=1 -d pcov.directory='/var/www/html' -d pcov.exclude='~vendor~' vendor/bin/phpunit --coverage-text"
     },
     "require-dev": {
         "phpunit/phpunit": "^11.1"

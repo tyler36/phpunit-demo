@@ -7,11 +7,13 @@
       <directory>tests/</directory>
     </testsuite>
   </testsuites>
+
   <!-- Write tests outputs to the following files. -->
   <logging>
     <junit outputFile="logs/phpunit-junit.xml" />
     <testdoxText outputFile="logs/phpunit-testdox.txt" />
   </logging>
+
   <!-- Filter for coverage reports. -->
   <coverage includeUncoveredFiles="true">
     <report>
@@ -22,6 +24,8 @@
       <cobertura outputFile="logs/php-coverage/cobertura-coverage.xml" />
     </report>
   </coverage>
+
+  <!-- Our main codebase folders used for coverage. -->
   <source>
     <include>
       <directory>app</directory>

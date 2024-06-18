@@ -12,7 +12,7 @@ web_environment: []
 corepack_enable: false
 omit_containers:
     - 'db'
-# webimage_extra_packages: ['php${DDEV_PHP_VERSION}-pcov']
+webimage_extra_packages: ['php${DDEV_PHP_VERSION}-pcov']
 
 # Key features of DDEV's config.yaml:
 
