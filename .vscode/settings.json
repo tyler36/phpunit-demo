@@ -1,0 +1,5 @@
+{
+  "phpstan.enabled": true,
+  "phpstan.enableStatusBar": false,
+  "phpstan.suppressTimeoutMessage": true,
+}
