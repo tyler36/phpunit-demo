@@ -7,12 +7,12 @@ namespace App;
  */
 class Calculator
 {
-  public function add(int $a, int $b)
+  public function add(int $a, int $b): int
   {
     return $a + $b;
   }
 
-  public function zero() {
+  public function zero(): int {
     return 0;
   }
 }
