@@ -6,6 +6,8 @@
   <testsuites>
     <testsuite name="Tests">
       <directory>tests/</directory>
+      <!-- The following tests generates various failing and warning examples. Comment-out to see this. -->
+      <exclude>tests/ResultTypesTest.php</exclude>
     </testsuite>
   </testsuites>
 
