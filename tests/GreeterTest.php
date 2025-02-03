@@ -10,7 +10,7 @@ class GreeterTest extends TestCase
 
         $greeting = $greeter->greet('Alice');
 
-        $this->assertSame('Hello, David!', $greeting);
+        $this->assertSame('Hello, Alice!', $greeting);
     }
 
     public function testException(): void
