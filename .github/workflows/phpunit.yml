@@ -1,4 +1,4 @@
-name: phpunit
+name: testing
 
 on:
   workflow_dispatch:
@@ -38,4 +38,3 @@ jobs:
         with:
           name: Logs
           path: ./logs
-
