@@ -1,5 +1,5 @@
 # phpstan.neon
 parameters:
-  level: 8
-  paths:
-    - app/
+    level: 8
+    paths:
+        - app/
