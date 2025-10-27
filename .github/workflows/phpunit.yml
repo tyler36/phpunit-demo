@@ -44,7 +44,7 @@ jobs:
         run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text
 
       - name: "☁️ Upload artifacts"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Logs
           path: ./logs
