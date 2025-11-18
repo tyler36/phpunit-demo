@@ -17,9 +17,18 @@
     <testdoxText outputFile="logs/phpunit-testdox.txt" />
   </logging>
 
-  <!-- Base configuration without coverage - use phpunit-coverage.xml for coverage -->
+  <!-- Filter for coverage reports. -->
+  <coverage includeUncoveredFiles="true">
+    <report>
+      <html outputDirectory="logs/php-coverage/html-coverage" lowUpperBound="50" highLowerBound="90" />
+      <text outputFile="logs/php-coverage/coverage.txt"
+        showUncoveredFiles="true"
+        showOnlySummary="true"/>
+      <cobertura outputFile="logs/php-coverage/cobertura-coverage.xml" />
+    </report>
+  </coverage>
 
-  <!-- Source paths defined for potential coverage use -->
+  <!-- Our main codebase folders used for coverage. -->
   <source>
     <include>
       <directory>app</directory>

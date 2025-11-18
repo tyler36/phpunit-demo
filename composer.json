@@ -9,7 +9,7 @@
         "test": "phpunit",
         "test:xdebug": [
             "@putenv XDEBUG_MODE=coverage",
-            "@test --coverage-text"
+            "@test -c phpunit-coverage.xml --coverage-text"
         ],
         "test:pcov": "php -d pcov.enabled=1 -d pcov.directory='/var/www/html' -d pcov.exclude='~vendor~' vendor/bin/phpunit --coverage-text"
     },
