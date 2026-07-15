@@ -13,6 +13,9 @@
         ],
         "test:pcov": "php -d pcov.enabled=1 -d pcov.directory='/var/www/html' -d pcov.exclude='~vendor~' vendor/bin/phpunit --coverage-text"
     },
+    "require": {
+        "php": ">=8.3"
+    },
     "require-dev": {
         "phpunit/phpunit": "^12.2",
         "phpstan/phpstan": "^2.1",
